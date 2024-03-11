@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Styles, TextInput, Button, FlatList, ImageBackground, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import image from './Images/italy.jpg';
+import SearchComponent from './searchComponent';
+
 
 const preCodedMeals = [
     { name: 'Spaghetti Bolognese', calories: 500, ingredients: ['Spaghetti', 'Bolognese sauce', 'Ground beef'] },
@@ -80,6 +82,9 @@ const MealScreen = ({ navigation }) => {
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 20 }}>
+
+            <SearchComponent/>
+
                 <TextInput
                     placeholder="Enter a Meal"
                     value={meal}
