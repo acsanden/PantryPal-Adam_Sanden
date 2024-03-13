@@ -81,9 +81,11 @@ const MealScreen = ({ navigation }) => {
             source={image}
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
+            
+            <SearchComponent />
+
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 20 }}>
 
-            <SearchComponent/>
 
                 <TextInput
                     placeholder="Enter a Meal"
