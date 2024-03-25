@@ -9,6 +9,7 @@ const searchComponent = () => {
       placeholder="Search Categories"
       onChangeText={setSearchQuery}
       value={searchQuery}
+      style={{ width: '90%', marginTop: 20, marginBottom: 20}}
     />
   );
 };

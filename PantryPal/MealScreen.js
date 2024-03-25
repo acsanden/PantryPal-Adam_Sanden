@@ -101,9 +101,11 @@ const MealScreen = ({ navigation }) => {
             source={image}
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
+            
+            <SearchComponent />
+
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 20 }}>
 
-            <SearchComponent/>
 
             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 10 }}>
                 {mealCategories.map((category, index) => (
