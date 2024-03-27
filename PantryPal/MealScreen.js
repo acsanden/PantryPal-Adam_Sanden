@@ -82,9 +82,18 @@ const MealScreen = ({ navigation }) => {
 
     //Filter meals by category
     const filterMealsByCategory = (category) => {
-        if (!category) return preCodedMeals; // If no category is selected, return all meals
-        return preCodedMeals.filter(meal => meal.categories.includes(category));
+        // Return all meals if no category is selected
+        if (!category) return preCodedMeals;
+      
+        // Convert input category to lowercase for case-insensitive comparison
+        const lowerCaseCategory = category.toLowerCase();
+      
+        // Filter meals by category, ignoring case
+        return preCodedMeals.filter(meal => 
+          meal.categories.some(cat => cat.toLowerCase() === lowerCaseCategory)
+        );
     };
+      
 
     const CategoryButton = ({ category, setSelectedCategory }) => (
         <TouchableOpacity onPress={() => setSelectedCategory(category)}>
@@ -102,7 +111,7 @@ const MealScreen = ({ navigation }) => {
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
             
-            <SearchComponent />
+            <SearchComponent setSelectedCategory={setSelectedCategory} />
 
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 20 }}>
 
