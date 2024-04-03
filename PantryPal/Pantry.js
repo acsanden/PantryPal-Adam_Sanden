@@ -44,28 +44,30 @@ const Pantry = ({navigation}) => {
       {/* This is the text container for the item name and quantity */}
       <View style={styles.textContainer}>
         <Text style={styles.text2}>{item.key}</Text>
-        <Text style={styles.text3}>     Quantity: {item.itemData.quantity}</Text>
+        <Text style={styles.text2}>Quantity: {item.itemData.quantity}</Text>
       </View>
       {/* This is the text container for the date purchased */}
       <View style={styles.textContainer}>
-        <Text style={styles.text3}>Date Purchased: {item.itemData.datePurchased.toDateString()}</Text>
+        <Text style={styles.text3}>Purchased: </Text>
+        <Text style={styles.text3}>{`${item.itemData.datePurchased.getMonth()+1}/${item.itemData.datePurchased.getDate()}/${item.itemData.datePurchased.getFullYear()}`}</Text>
       </View>
       {/* This is the text container for the expiration date */}
       <View style={styles.textContainer}>
-        <Text style={styles.text3}>Expiration Date: {item.itemData.expiration.toDateString()}</Text>
+        <Text style={styles.text3}>Expiration: </Text>
+        <Text style={styles.text3}>{`${item.itemData.expiration.getMonth()+1}/${item.itemData.expiration.getDate()}/${item.itemData.expiration.getFullYear()}`}</Text>
       </View>
       {/* This is the text container for the location of the item */}
-      <View style={styles.textContainer2}>
+      {/* <View style={styles.textContainer2}>
         <Text style={styles.text3}>Location of {item.key}</Text>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text3}>Refrigerator: {item.itemData.fridge ? 'Yes' : 'No'}</Text>
-        <Text style={styles.text3}>     Freezer: {item.itemData.freezer ? 'Yes' : 'No'}</Text>
+        <Text style={styles.text3}>Freezer: {item.itemData.freezer ? 'Yes' : 'No'}</Text>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text3}>Pantry: {item.itemData.pantry ? 'Yes' : 'No'}</Text>
-      </View>
-      <View style={styles.buttonContainer}>
+      </View> */}
+      {/* <View style={styles.buttonContainer}>
         <Button
           title="Edit Item"
           color = 'darkorange'
@@ -85,7 +87,7 @@ const Pantry = ({navigation}) => {
             toggleDialog();
           }}
         />
-      </View>
+      </View> */}
     </View>
   );
   

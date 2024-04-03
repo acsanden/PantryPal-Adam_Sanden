@@ -5,7 +5,7 @@
 
 import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+export default styles = StyleSheet.create({
   addContainer: {
     flex: 1,
     justifyContent: "center",
@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
     borderRadius: 25, // Rounded border
     borderWidth: 5, // 5 point border width
     padding: 20,
-    
   },
   addText: {
     fontSize: 20,
@@ -86,17 +85,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
   },
-  itemContainer: {
-    flex: 0.3,
-    justifyContent: 'space-between',
-    backgroundColor: 'floralwhite',
-    borderColor: 'black',
-    borderRadius: 20, // Rounded border
-    borderWidth: 5, // 5 point border width
-    // position: "relative", // Add this to allow absolute positioning
-    padding: 20,
-    margin: 10,
-  },
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -132,15 +120,28 @@ const styles = StyleSheet.create({
     padding: 10, // Padding inside the border
     backgroundColor: "powderblue",
   },
+  itemContainer: {
+    flex: 0.3,
+    justifyContent: 'space-between',
+    backgroundColor: 'floralwhite',
+    borderColor: 'black',
+    borderRadius: 20, // Rounded border
+    borderWidth: 5, // 5 point border width
+    // position: "relative", // Add this to allow absolute positioning
+    padding: 5,
+    margin: 10,
+  },
   textContainer: {
     flexDirection: "row", // Arrange items in a row horizontally
     justifyContent: "space-between", // Space between the buttons
-    marginTop: 10, // Add space between the item details and buttons
+    padding:5,
+    flex: 2,
+    // marginTop: 10, // Add space between the item details and buttons
   },
   textContainer2: {
     flexDirection: "row", // Arrange items in a row horizontally
     justifyContent: "center", // Space between the buttons
-    marginTop: 10, // Add space between the item details and buttons
+    // marginTop: 10, // Add space between the item details and buttons
   },
   text: {
     fontSize: 24,
@@ -181,4 +182,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default styles;
