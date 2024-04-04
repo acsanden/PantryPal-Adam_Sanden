@@ -85,6 +85,15 @@ export default styles = StyleSheet.create({
     alignItems: 'center',
 
   },
+  itemContainer: {
+    flex: 0.3,
+    justifyContent: 'space-between',
+    backgroundColor: 'floralwhite',
+    borderRadius: 10, // Rounded border
+    // position: "relative", // Add this to allow absolute positioning
+    padding: 20,
+    margin: 10,
+  },
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -120,23 +129,10 @@ export default styles = StyleSheet.create({
     padding: 10, // Padding inside the border
     backgroundColor: "powderblue",
   },
-  itemContainer: {
-    flex: 0.3,
-    justifyContent: 'space-between',
-    backgroundColor: 'floralwhite',
-    borderColor: 'black',
-    borderRadius: 20, // Rounded border
-    borderWidth: 5, // 5 point border width
-    // position: "relative", // Add this to allow absolute positioning
-    padding: 5,
-    margin: 10,
-  },
+  
   textContainer: {
     flexDirection: "row", // Arrange items in a row horizontally
     justifyContent: "space-between", // Space between the buttons
-    padding:5,
-    flex: 2,
-    // marginTop: 10, // Add space between the item details and buttons
   },
   textContainer2: {
     flexDirection: "row", // Arrange items in a row horizontally
@@ -157,6 +153,12 @@ export default styles = StyleSheet.create({
   },
   text3: {
     fontSize: 16,
+    fontFamily: "Trebuchet MS", // Change to your desired font
+    color: "black", // Change to your desired color
+    fontWeight: "bold",
+  },
+  text4: {
+    fontSize: 32,
     fontFamily: "Trebuchet MS", // Change to your desired font
     color: "black", // Change to your desired color
     fontWeight: "bold",

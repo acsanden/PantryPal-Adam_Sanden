@@ -6,7 +6,7 @@
  */
 
 import React, { useEffect, useState } from "react";
-import {Button, FlatList, ImageBackground, Modal, RefreshControl, Text, View, ActivityIndicator} from "react-native";
+import {Button, FlatList,TouchableOpacity, ImageBackground, Modal, RefreshControl, Text, View, ActivityIndicator} from "react-native";
 import {loadPantryData, deleteItem} from './PantryStorage.ts';  // storage methods 
 import Snackbar from "react-native-snackbar";
 import image from './Images/pantryimage.jpg';     // backround image
@@ -53,21 +53,9 @@ const Pantry = ({navigation}) => {
       </View>
       {/* This is the text container for the expiration date */}
       <View style={styles.textContainer}>
-        <Text style={styles.text3}>Expiration: </Text>
-        <Text style={styles.text3}>{`${item.itemData.expiration.getMonth()+1}/${item.itemData.expiration.getDate()}/${item.itemData.expiration.getFullYear()}`}</Text>
+        <Text style={styles.text3}>Expiration Date: {item.itemData.expiration.toDateString()}</Text>
       </View>
-      {/* This is the text container for the location of the item */}
-      {/* <View style={styles.textContainer2}>
-        <Text style={styles.text3}>Location of {item.key}</Text>
-      </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.text3}>Refrigerator: {item.itemData.fridge ? 'Yes' : 'No'}</Text>
-        <Text style={styles.text3}>Freezer: {item.itemData.freezer ? 'Yes' : 'No'}</Text>
-      </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.text3}>Pantry: {item.itemData.pantry ? 'Yes' : 'No'}</Text>
-      </View> */}
-      {/* <View style={styles.buttonContainer}>
+      <View style={styles.buttonContainer}>
         <Button
           title="Edit Item"
           color = 'darkorange'
@@ -87,14 +75,13 @@ const Pantry = ({navigation}) => {
             toggleDialog();
           }}
         />
-      </View> */}
+      </View>
     </View>
   );
   
   // This is the actual screen that is rendered
   return (
-    <ImageBackground
-      source={image}
+    <View
       style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
     >
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -159,35 +146,27 @@ const Pantry = ({navigation}) => {
         )}
   
         {/* Buttons at the bottom of the screen */}
-        <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-          <Button
-            title="Home"
-            color="grey"
-            onPress={() => navigation.navigate("Home Screen")}
-          />
-          <Text>          </Text>
-          <Button
-            title="Add Item"
-            color="green"
-            onPress={ () => {
-              navigation.navigate("Add Item");
-            }}
-          />
-          <Text>          </Text>
-          <Button
-            title="Refresh"
-            color="teal"
-            onPress={() => {
-              fetchData();
-              Snackbar.show({
-                text: 'Pantry refreshed',
-                duration: Snackbar.LENGTH_SHORT,
-              });
-            }}
-          />
+        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', backgroundColor: '#f7c3f1', width: '100%'}}>
+          <TouchableOpacity style={{justifyContent: "center", alignItems: "center"}} onPress={() => navigation.navigate("Home Screen")}>
+            <Text style={styles.text4}>&#9750;</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{justifyContent: "center", alignItems: "center"}} onPress={() => navigation.navigate("Add Item")}>
+            <Text style={styles.text4}>&#65291;</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{justifyContent: "center", alignItems: "center"}} onPress={() => {
+                fetchData();
+                Snackbar.show({
+                  text: 'Pantry refreshed',
+                  duration: Snackbar.LENGTH_SHORT,
+                });
+              }}>
+            <Text style={styles.text4}>&#x21bb;</Text>
+          </TouchableOpacity>
         </View>
       </View>
-    </ImageBackground>
+    </View>
   );  
 };
 
