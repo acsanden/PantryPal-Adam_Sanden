@@ -72,9 +72,6 @@ const Pantry = ({navigation}) => {
         <Text style={styles.text3}>Expiration Date: {item.itemData.expiration.toDateString()}</Text>
 
       </View>
-      <View style={styles.textContainer}>
-        <Text style={styles.text3}>Pantry: {item.itemData.pantry ? 'Yes' : 'No'}</Text>
-      </View>
       <View style={styles.buttonContainer}>
         <Button
           title="Edit Item"
