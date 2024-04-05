@@ -7,7 +7,7 @@
  */
 
 // Necessary imports
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   NavigationContainer,
   NavigationProp,
@@ -15,6 +15,7 @@ import {
 } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 // Import the screens
+import LogIn from './LogIn.js';
 import HomeScreen from './HomeScreen.js';
 import GroceryList from './GroceryList.js';
 import MealScreen from './MealScreen.js';
@@ -63,12 +64,16 @@ const PantryStackScreen = () => {
   );
 };
 
-
 // This is the main navigation stack for the app
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home Screen">
+      <Stack.Navigator initialRouteName="LogIn"> 
+        <Stack.Screen
+          name="LogIn"
+          component={LogIn} 
+          options={{headerShown: false}} // Hide header for LogIn
+        />
         <Stack.Screen
           name="Home Screen"
           component={HomeScreen}
@@ -79,7 +84,8 @@ const App = () => {
           component={GroceryList}
         />
         <Stack.Screen 
-          name="Meal Plans" component={MealScreen} 
+          name="Meal Plans"
+          component={MealScreen} 
         />
         <Stack.Screen
           name="Pantry"

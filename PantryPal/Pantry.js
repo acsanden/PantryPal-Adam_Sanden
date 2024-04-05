@@ -20,7 +20,6 @@ const Pantry = ({navigation}) => {
   const [loading, setLoading] = useState(true);
   /* Screen Functions */
   const toggleDialog = () => {setIsDialogVisible(!isDialogVisible);}; // togles delete confirmation
-
   // This is to fetch the pantry data from the firebase
   const fetchData = async () => {
     setLoading(true); // Set loading to true when data fetching starts
@@ -31,9 +30,7 @@ const Pantry = ({navigation}) => {
 
   // This loads the pantry data from The firebase
   useEffect(() => {
-    const fetchDataAsync = async () => {
-      await fetchData();
-    };
+    const fetchDataAsync = async () => {await fetchData();};
     fetchDataAsync();
   }, []);
 
