@@ -2,18 +2,17 @@
 import React, { useState } from 'react';
 import { Searchbar } from 'react-native-paper';
 
-const SearchComponent = ({ setSelectedCategory }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+const SearchComponent = ({ setSearchQuery }) => {
+  const [searchQuery, setSearchQueryLocal] = useState('');
 
   const onChangeSearch = (query) => {
-    setSearchQuery(query);
-    // Notify parent component about the selected category
-    setSelectedCategory(query);
+    setSearchQueryLocal(query);
+    setSearchQuery(query); // Pass the search query to the parent component
   };
 
   return (
     <Searchbar
-      placeholder="Search Categories"
+      placeholder="Search Meals"
       onChangeText={onChangeSearch}
       value={searchQuery}
       style={{ width: '90%', marginTop: 20, marginBottom: 20 }}
