@@ -144,13 +144,17 @@ const Pantry = ({navigation}) => {
         )}
   
         {/* Buttons at the bottom of the screen */}
+
         <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+        {/*
           <Button
             title="Home"
             color="grey"
             onPress={() => navigation.navigate("Home Screen")}
           />
+
           <Text>          </Text>
+        */}
           <Button
             title="Add Item"
             color="green"
