@@ -90,7 +90,7 @@ const App = () => {
         <Stack.Screen
           name="Pantry"
           component={PantryStackScreen}
-          options={{headerShown: false}} // Hide header for PantryStackScreen
+          //options={{headerShown: false}} // Hide header for PantryStackScreen
         />
       </Stack.Navigator>
     </NavigationContainer>

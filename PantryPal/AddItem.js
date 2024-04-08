@@ -34,9 +34,7 @@ const AddItem = ({navigation}) => {
   const [quantity, setQuantity] = useState('');
   const [datePurchased, setDatePurchased] = useState(new Date());
   const [expirationDate, setExpirationDate] = useState(new Date());
-  const [inRefrigerator, setInRefrigerator] = useState(false);
-  const [inFreezer, setInFreezer] = useState(false);
-  const [inPantry, setInPantry] = useState(false);
+
   // This is the state for the error message
   const [errorMessage, setErrorMessage] = useState('');
   // These are the states for the date pickers
@@ -60,18 +58,14 @@ const AddItem = ({navigation}) => {
         datePurchased.toString(),
         expirationDate.toString(),
         quantity,
-        inRefrigerator,
-        inFreezer,
-        inPantry,
+
       );
       // Reset the input fields
       setName('');
       setDatePurchased(new Date());
       setExpirationDate(new Date());
       setQuantity('');
-      setInRefrigerator(false);
-      setInFreezer(false);
-      setInPantry(false);
+
       Snackbar.show({
         text: 'Item added!',
         duration: Snackbar.LENGTH_SHORT,
@@ -194,33 +188,7 @@ const AddItem = ({navigation}) => {
               }}
             />
           )}
-        </View>
-        <View style={styles.addTextContainer}>
-          <Text style={styles.addText}>Location of {name}</Text>
-        </View>
-        <View style={styles.addTextContainer}>
-          <Text style={styles.addText}>Refrigerator: {inRefrigerator ? 'Yes' : 'No'}</Text>
-          <Text style={styles.addText}>     Freezer: {inFreezer ? 'Yes' : 'No'}</Text>
-        </View>
-        <View style={styles.addTextContainer}>
-          <Text style={styles.addText}>Pantry: {inPantry ? 'Yes' : 'No'}</Text>
-        </View>
-        <View style={styles.buttonContainer2}>
-          <Button
-            title='Refrigerator'
-            color = 'blue'
-            onPress={() => setInRefrigerator(!inRefrigerator)}
-          />
-          <Text>          </Text>
-          <Button
-            title='Freezer'
-            color = 'purple'
-            onPress={() => setInFreezer(!inFreezer)} />
-          <Text>          </Text>
-          <Button
-          title='Pantry'
-          color = 'slategray'
-          onPress={() => setInPantry(!inPantry)} />
+
         </View>
         <View style={styles.buttonContainer3}>
           <Button color={'green'} title='Add Item' onPress={ async () => {
