@@ -179,6 +179,40 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginBottom: 10,
   },
+  textBox3: {
+    backgroundColor: 'white',
+    borderWidth: 2,
+    borderColor: 'black',
+    height: 50,
+    width: 300,
+    padding: 10,
+    marginVertical: 10,
+    marginBottom: 10,
+    borderRadius: 10,
+  },
+  logInButton: {
+    backgroundColor: '#4CAF50', 
+    padding: 10,
+    height: 40,
+    width: 200,
+    marginVertical: 5,
+    borderRadius: 5,
+    alignItems: 'center',   
+  },
+  signUpButton: {
+    backgroundColor: '#2196F3', 
+    padding: 10,
+    height: 40,
+    width: 200,
+    marginVertical: 5,
+    borderRadius: 5,
+    alignItems: 'center',   
+  },
+  errorText: {
+    fontSize: 15, 
+    color: 'red', 
+    fontWeight: 'bold',
+  },
 });
 
 export default styles;
