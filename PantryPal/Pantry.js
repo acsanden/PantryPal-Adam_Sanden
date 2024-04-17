@@ -6,7 +6,7 @@
  */
 
 import React, { useEffect, useState } from "react";
-import {Button, FlatList, ImageBackground, Modal, RefreshControl, Text, View, ActivityIndicator} from "react-native";
+import {Button, FlatList,TouchableOpacity, ImageBackground, Modal, RefreshControl, Text, View, ActivityIndicator} from "react-native";
 import {loadPantryData, deleteItem} from './PantryStorage.ts';  // storage methods 
 import Snackbar from "react-native-snackbar";
 import image from './Images/pantryimage.jpg';     // backround image
@@ -41,11 +41,12 @@ const Pantry = ({navigation}) => {
       {/* This is the text container for the item name and quantity */}
       <View style={styles.textContainer}>
         <Text style={styles.text2}>{item.key}</Text>
-        <Text style={styles.text3}>     Quantity: {item.itemData.quantity}</Text>
+        <Text style={styles.text2}>Quantity: {item.itemData.quantity}</Text>
       </View>
       {/* This is the text container for the date purchased */}
       <View style={styles.textContainer}>
-        <Text style={styles.text3}>Date Purchased: {item.itemData.datePurchased.toDateString()}</Text>
+        <Text style={styles.text3}>Purchased: </Text>
+        <Text style={styles.text3}>{`${item.itemData.datePurchased.getMonth()+1}/${item.itemData.datePurchased.getDate()}/${item.itemData.datePurchased.getFullYear()}`}</Text>
       </View>
       {/* This is the text container for the expiration date */}
       <View style={styles.textContainer}>
@@ -78,8 +79,7 @@ const Pantry = ({navigation}) => {
   
   // This is the actual screen that is rendered
   return (
-    <ImageBackground
-      source={image}
+    <View
       style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
     >
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -176,7 +176,7 @@ const Pantry = ({navigation}) => {
           />
         </View>
       </View>
-    </ImageBackground>
+    </View>
   );  
 };
 

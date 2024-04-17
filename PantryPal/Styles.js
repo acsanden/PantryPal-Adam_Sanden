@@ -5,20 +5,20 @@
 
 import { StyleSheet } from "react-native";
 
-const styles = StyleSheet.create({
+export default styles = StyleSheet.create({
   addContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     position: "relative", // Add this to allow absolute positioning'
-    backgroundColor: "powderblue",
+    backgroundColor: "white",
     marginTop: 150,
     marginBottom: 150,
-    borderColor: "black",
-    borderRadius: 25, // Rounded border
-    borderWidth: 5, // 5 point border width
+    //borderColor: "black",
+    borderRadius: 10, // Rounded border
+    //borderWidth: 5, // 5 point border width
     padding: 20,
-    
+    margin: 10,
   },
   addText: {
     fontSize: 20,
@@ -90,9 +90,7 @@ const styles = StyleSheet.create({
     flex: 0.3,
     justifyContent: 'space-between',
     backgroundColor: 'floralwhite',
-    borderColor: 'black',
-    borderRadius: 20, // Rounded border
-    borderWidth: 5, // 5 point border width
+    borderRadius: 10, // Rounded border
     // position: "relative", // Add this to allow absolute positioning
     padding: 20,
     margin: 10,
@@ -132,15 +130,15 @@ const styles = StyleSheet.create({
     padding: 10, // Padding inside the border
     backgroundColor: "powderblue",
   },
+  
   textContainer: {
     flexDirection: "row", // Arrange items in a row horizontally
     justifyContent: "space-between", // Space between the buttons
-    marginTop: 10, // Add space between the item details and buttons
   },
   textContainer2: {
     flexDirection: "row", // Arrange items in a row horizontally
     justifyContent: "center", // Space between the buttons
-    marginTop: 10, // Add space between the item details and buttons
+    // marginTop: 10, // Add space between the item details and buttons
   },
   text: {
     fontSize: 24,
@@ -160,6 +158,12 @@ const styles = StyleSheet.create({
     color: "black", // Change to your desired color
     fontWeight: "bold",
   },
+  text4: {
+    fontSize: 32,
+    fontFamily: "Trebuchet MS", // Change to your desired font
+    color: "black", // Change to your desired color
+    fontWeight: "bold",
+  },
   textBox: {
     borderWidth: 3,
     borderColor: 'black',
@@ -170,11 +174,11 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   textBox2: {
-    backgroundColor: 'white',
-    borderWidth: 3,
-    borderColor: 'black',
+    backgroundColor: 'lightgrey',
+    //borderWidth: 3,
+    //borderColor: 'black',
     height: 40,
-    width: 200,
+    width: 300,
     padding: 10,
     marginVertical: 10,
     marginBottom: 10,
@@ -215,4 +219,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default styles;
