@@ -141,16 +141,8 @@ const AddItem = ({navigation}) => {
           maxLength={5}
           style={styles.textBox2}
         />
-        <View style={styles.addTextContainer}>
-          <Text style={styles.status}>Purchased: {datePurchased.toDateString()}</Text>
-        </View>
-        <View style={styles.addTextContainer}>
-          <Text style={styles.status}>Expires: {expirationDate.toDateString()}</Text>
-        </View>
-        <View style={styles.buttonContainer2}>
           <Button
-            title='Purchase Date'
-            color='goldenrod'
+            title={`Purchased:\t\t\t\t${datePurchased.toDateString()}`}
             onPress={() => showDatepicker('purchase')}
           />
           {showDatePickerPurchase && (
@@ -168,8 +160,7 @@ const AddItem = ({navigation}) => {
           )}
           <Text>          </Text>
           <Button
-            title='Expiration Date'
-            color='darkred'
+            title={`Expires:\t\t\t\t\t\t\t${expirationDate.toDateString()}`}
             onPress={() => showDatepicker('expiration')}
           />
           {showDatePickerExpiration && (
@@ -185,8 +176,6 @@ const AddItem = ({navigation}) => {
               }}
             />
           )}
-
-        </View>
         <View style={styles.buttonContainer3}>
           <Button color={'green'} title='Add Item' onPress={ async () => {
             if (name.trim() === '') {
@@ -206,7 +195,7 @@ const AddItem = ({navigation}) => {
           }} 
           />
           <Text>          </Text>
-          <Button color={'red'} title='Cancel' onPress={() => {
+          <Button color={'grey'} style={{color: 'black'}}title='back' onPress={() => {
             navigation.goBack();
           }}
           />

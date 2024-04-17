@@ -11,13 +11,14 @@ export default styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     position: "relative", // Add this to allow absolute positioning'
-    backgroundColor: "powderblue",
+    backgroundColor: "white",
     marginTop: 150,
     marginBottom: 150,
-    borderColor: "black",
-    borderRadius: 25, // Rounded border
-    borderWidth: 5, // 5 point border width
+    //borderColor: "black",
+    borderRadius: 10, // Rounded border
+    //borderWidth: 5, // 5 point border width
     padding: 20,
+    margin: 10,
   },
   addText: {
     fontSize: 20,
@@ -173,11 +174,11 @@ export default styles = StyleSheet.create({
     marginBottom: 5,
   },
   textBox2: {
-    backgroundColor: 'white',
-    borderWidth: 3,
-    borderColor: 'black',
+    backgroundColor: 'lightgrey',
+    //borderWidth: 3,
+    //borderColor: 'black',
     height: 40,
-    width: 200,
+    width: 300,
     padding: 10,
     marginVertical: 10,
     marginBottom: 10,
