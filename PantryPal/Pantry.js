@@ -20,7 +20,6 @@ const Pantry = ({navigation}) => {
   const [loading, setLoading] = useState(true);
   /* Screen Functions */
   const toggleDialog = () => {setIsDialogVisible(!isDialogVisible);}; // togles delete confirmation
-
   // This is to fetch the pantry data from the firebase
   const fetchData = async () => {
     setLoading(true); // Set loading to true when data fetching starts
@@ -31,9 +30,7 @@ const Pantry = ({navigation}) => {
 
   // This loads the pantry data from The firebase
   useEffect(() => {
-    const fetchDataAsync = async () => {
-      await fetchData();
-    };
+    const fetchDataAsync = async () => {await fetchData();};
     fetchDataAsync();
   }, []);
 
@@ -54,6 +51,7 @@ const Pantry = ({navigation}) => {
       {/* This is the text container for the expiration date */}
       <View style={styles.textContainer}>
         <Text style={styles.text3}>Expiration Date: {item.itemData.expiration.toDateString()}</Text>
+
       </View>
       <View style={styles.buttonContainer}>
         <Button
@@ -146,24 +144,36 @@ const Pantry = ({navigation}) => {
         )}
   
         {/* Buttons at the bottom of the screen */}
-        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', backgroundColor: '#f7c3f1', width: '100%'}}>
-          <TouchableOpacity style={{justifyContent: "center", alignItems: "center"}} onPress={() => navigation.navigate("Home Screen")}>
-            <Text style={styles.text4}>&#9750;</Text>
-          </TouchableOpacity>
 
-          <TouchableOpacity style={{justifyContent: "center", alignItems: "center"}} onPress={() => navigation.navigate("Add Item")}>
-            <Text style={styles.text4}>&#65291;</Text>
-          </TouchableOpacity>
+        <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+        {/*
+          <Button
+            title="Home"
+            color="grey"
+            onPress={() => navigation.navigate("Home Screen")}
+          />
 
-          <TouchableOpacity style={{justifyContent: "center", alignItems: "center"}} onPress={() => {
-                fetchData();
-                Snackbar.show({
-                  text: 'Pantry refreshed',
-                  duration: Snackbar.LENGTH_SHORT,
-                });
-              }}>
-            <Text style={styles.text4}>&#x21bb;</Text>
-          </TouchableOpacity>
+          <Text>          </Text>
+        */}
+          <Button
+            title="Add Item"
+            color="green"
+            onPress={ () => {
+              navigation.navigate("Add Item");
+            }}
+          />
+          <Text>          </Text>
+          <Button
+            title="Refresh"
+            color="teal"
+            onPress={() => {
+              fetchData();
+              Snackbar.show({
+                text: 'Pantry refreshed',
+                duration: Snackbar.LENGTH_SHORT,
+              });
+            }}
+          />
         </View>
       </View>
     </View>

@@ -1,10 +1,12 @@
-/*
+                                                 /*
  * File: PantryPal/Storage.ts
  * Description: Firebase Firestore Cloud Database storage functions for PantryPal
  */
 
 // Necessary imports
 import firestore from '@react-native-firebase/firestore';
+import { getUserId } from './UserStorage';
+
 
 // This is our collection
 const pantry = 'Pantry';
@@ -41,11 +43,10 @@ export const addItem = async (
 
   // Try to save the item to the storage
   try {
-    await firestore().collection(pantry).doc(name).set(itemData);
+    const userId = await getUserId();
+    await firestore().collection('users').doc(userId).collection(pantry).doc(name).set(itemData);
   } catch (error) {
-    // This is for debugging purposes
     console.log(error);
-    // Throw an error if we fail to save the data
     throw new addItemError('Failed to add item: ' + error);
   }
 };
@@ -56,12 +57,10 @@ export const addItem = async (
  */
 export const deleteItem = async (name: string) => {
   try {
-    // Delete the item from storage
-    await firestore().collection(pantry).doc(name).delete();
+    const userId = await getUserId();
+    await firestore().collection('users').doc(userId).collection(pantry).doc(name).delete();
   } catch (error) {
-    // This is for debugging purposes
     console.log(error);
-    // Throw an error if we fail to save the data
     throw new deleteItemError('Failed to delete item: ' + error);
   }
 };
@@ -96,11 +95,10 @@ export const editItem = async (
       pantry: inPantry,
     };
     // Update the item
-    await firestore().collection(pantry).doc(name).set(itemData);
+    const userId = await getUserId();
+    await firestore().collection('users').doc(userId).collection(pantry).doc(name).set(itemData);
   } catch (error) {
-    // This is for debugging purposes
     console.log(error);
-    // Throw an error if we fail to save the data
     throw new updateItemError('Failed to update item: ' + error);
   }
 };
@@ -112,17 +110,14 @@ export const editItem = async (
 export const loadItem = async (name: string) => {
   try {
     // Get the item from storage using the name
-    const itemDoc = await firestore().collection(pantry).doc(name).get();
-    // If the item exists
+    const userId = await getUserId();
+    const itemDoc = await firestore().collection('users').doc(userId).collection(pantry).doc(name).get();
     if (itemDoc.exists) {
-      // Get the data from the item
       const itemData = itemDoc.data();
-      // If there is data
       if (itemData) {
         // Convert the date strings back to Date objects
         itemData.datePurchased = new Date(itemData.datePurchased);
         itemData.expiration = new Date(itemData.expiration);
-        // Return the data
         return itemData;
       }
       // If there is no data, return null
@@ -131,7 +126,6 @@ export const loadItem = async (name: string) => {
     // If the item doesn't exist, return null
     return null;
   } catch (error) {
-    // This is for debugging purposes
     console.log(error);
     throw new loadItemError('Failed to load item: ' + error);
   }
@@ -139,13 +133,13 @@ export const loadItem = async (name: string) => {
 
 // Loads all of the items and associated data in our pantry
 export const loadPantryData = async () => {
+  console.log(getUserId());
   try {
     // Grab all the documents in the collection
-    const itemsQuerySnapshot = await firestore().collection(pantry).get();
+    const userId = await getUserId();
+    const itemsQuerySnapshot = await firestore().collection('users').doc(userId).collection(pantry).get();
     // If there are no documents, return null
-    if (itemsQuerySnapshot.empty) {
-      return null;
-    }
+    if (itemsQuerySnapshot.empty) {return null;}
     // If there are documents, convert the strings back to Date objects
     const allStoredData = itemsQuerySnapshot.docs.map(doc => {
       const itemData = doc.data();
@@ -156,7 +150,6 @@ export const loadPantryData = async () => {
     // Return the data
     return allStoredData;
   } catch (error) {
-    // This is for debugging purposes
     console.log(error);
     throw new loadPantryDataError('Failed to pantry data: ' + error);
   }
@@ -165,7 +158,8 @@ export const loadPantryData = async () => {
 // Loads the the names of all of the items in our pantry
 export const loadPantryKeys = async () => {
   try {
-    const itemsQuerySnapshot = await firestore().collection(pantry).get();
+    const userId = await getUserId();
+    const itemsQuerySnapshot = await firestore().collection('users').doc(userId).collection(pantry).get();
     // If there are no documents, return null
     if (itemsQuerySnapshot.empty) {
       return null;
@@ -173,11 +167,8 @@ export const loadPantryKeys = async () => {
     // If there are documents, return the ids
     return itemsQuerySnapshot.docs.map(doc => doc.id);
   } catch (error) {
-    // This is for debugging purposes
     console.log(error);
-    throw new loadPantryCollectionError(
-      'Failed to load pantry items: ' + error,
-    );
+    throw new loadPantryCollectionError('Failed to load pantry items: ' + error,);
   }
 };
 
@@ -187,20 +178,15 @@ export const loadPantryKeys = async () => {
  * @param name - name of the item, ie "milk", "eggs", etc
  * @param datePurchased - date the item was purchased
  */
-export const updateDatePurchased = async (
-  name: string,
-  datePurchased: string,
-) => {
+export const updateDatePurchased = async (name: string, datePurchased: string) => {
   try {
-    await firestore().collection(pantry).doc(name).update({
+    const userId = await getUserId();
+    await firestore().collection('users').doc(userId).collection(pantry).doc(name).update({
       datePurchased: datePurchased,
     });
   } catch (error) {
-    // This is for debugging purposes
     console.log(error);
-    throw new updateDatePurchasedError(
-      'Failed to update date purchased: ' + error,
-    );
+    throw new updateDatePurchasedError('Failed to update date purchased: ' + error,);
   }
 };
 
@@ -211,15 +197,13 @@ export const updateDatePurchased = async (
  */
 export const updateExpiration = async (name: string, expiration: string) => {
   try {
-    await firestore().collection(pantry).doc(name).update({
+    const userId = await getUserId();
+    await firestore().collection('users').doc(userId).collection(pantry).doc(name).update({
       expiration: expiration,
     });
   } catch (error) {
-    // This is for debugging purposes
     console.log(error);
-    throw new updateExpirationError(
-      'Failed to update expiration date: ' + error,
-    );
+    throw new updateExpirationError('Failed to update expiration date: ' + error,);
   }
 };
 
@@ -237,13 +221,13 @@ export const updateLocation = async (
   inPantry: Boolean,
 ) => {
   try {
-    await firestore().collection(pantry).doc(name).update({
+    const userId = await getUserId();
+    await firestore().collection('users').doc(userId).collection(pantry).doc(name).update({
       fridge: fridge,
       freezer: freezer,
       pantry: inPantry,
     });
   } catch (error) {
-    // This is for debugging purposes
     console.log(error);
     throw new updateLocationError('Failed to update location: ' + error);
   }
@@ -258,10 +242,11 @@ export const updateName = async (name: string, newName: string) => {
   try {
     // Run a transaction to update the name
     // This ensures that both the update and delete operations happen atomically, providing data consistency.
+    const userId = await getUserId();
     await firestore().runTransaction(async transaction => {
       // Get a reference to the old item and the new item
-      const oldItemRef = firestore().collection(pantry).doc(name);
-      const newItemRef = firestore().collection(pantry).doc(newName);
+      const oldItemRef = firestore().collection('users').doc(userId).collection(pantry).doc(name);
+      const newItemRef = firestore().collection('users').doc(userId).collection(pantry).doc(newName);
 
       // Get the old item's data
       const oldItemSnapshot = await transaction.get(oldItemRef);
@@ -295,11 +280,11 @@ export const updateName = async (name: string, newName: string) => {
  */
 export const updateQuantity = async (name: string, quantity: number) => {
   try {
-    await firestore().collection(pantry).doc(name).update({
+    const userId = await getUserId();
+    await firestore().collection('users').doc(userId).collection(pantry).doc(name).update({
       quantity: quantity,
     });
   } catch (error) {
-    // This is for debugging purposes
     console.log(error);
     throw new updateQuantityError('Failed to update quantity: ' + error);
   }

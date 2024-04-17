@@ -1,17 +1,23 @@
-import * as React from 'react';
+// Import React and useState from 'react'
+import React, { useState } from 'react';
 import { Searchbar } from 'react-native-paper';
 
-const searchComponent = () => {
-  const [searchQuery, setSearchQuery] = React.useState('');
+const SearchComponent = ({ setSearchQuery }) => {
+  const [searchQuery, setSearchQueryLocal] = useState('');
+
+  const onChangeSearch = (query) => {
+    setSearchQueryLocal(query);
+    setSearchQuery(query); // Pass the search query to the parent component
+  };
 
   return (
     <Searchbar
-      placeholder="Search Categories"
-      onChangeText={setSearchQuery}
+      placeholder="Search Meals"
+      onChangeText={onChangeSearch}
       value={searchQuery}
-      style={{ width: '90%', marginTop: 20, marginBottom: 20}}
+      style={{ width: '90%', marginTop: 20, marginBottom: 20 }}
     />
   );
 };
 
-export default searchComponent;
+export default SearchComponent;

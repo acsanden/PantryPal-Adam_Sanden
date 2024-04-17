@@ -8,19 +8,35 @@
  */
 
 import React from 'react';
-import { View, Text, Button, ImageBackground, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Button, ImageBackground, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import image1 from './Images/italy.jpg';
 import image2 from './Images/pantrypal.jpg';
 import Icon from 'react-native-vector-icons/FontAwesome6';
+import auth from '@react-native-firebase/auth';
+import { getUserId } from './UserStorage';
 
 
 // This is the HomeScreen
 const HomeScreen = ({ navigation }) => {
+
+  const handleSignOut = async () => {
+    try {
+      await auth().signOut(); 
+      navigation.navigate('LogIn');
+    } catch (error) {
+      navigation.navigate('LogIn');
+      console.error('Error signing out:', error);
+    }
+  };
+
   return (
     <ImageBackground
       source={image1}
       style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
     >
+      <TouchableOpacity onPress={handleSignOut} style={styles.signoutButton}>
+        <Icon name="arrow-right-from-bracket" size={25} color="#ffffff" />
+      </TouchableOpacity>
       <View style={styles.container}>
         <Image
           source={image2}
@@ -61,6 +77,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative', // Add this to allow absolute positioning
+  },
+  signoutButton: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    zIndex: 1, // Ensure it's above other elements
   },
   iconContainer: {
     flexDirection: 'row',

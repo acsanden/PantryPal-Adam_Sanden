@@ -33,6 +33,11 @@ const MealScreen = ({ navigation }) => {
     const [mealsList, setMealsList] = useState([]);
     const [showAllMealsModal, setShowAllMealsModal] = useState(false);
     const [selectedMealToAdd, setSelectedMealToAdd] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const filteredMeals = preCodedMeals.filter((meal) => 
+        meal.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     const handleAddMeal = () => {
         if (meal.trim() !== '') {
@@ -82,9 +87,18 @@ const MealScreen = ({ navigation }) => {
 
     //Filter meals by category
     const filterMealsByCategory = (category) => {
-        if (!category) return preCodedMeals; // If no category is selected, return all meals
-        return preCodedMeals.filter(meal => meal.categories.includes(category));
+        // Return all meals if no category is selected
+        if (!category) return preCodedMeals;
+      
+        // Convert input category to lowercase for case-insensitive comparison
+        const lowerCaseCategory = category.toLowerCase();
+      
+        // Filter meals by category, ignoring case
+        return preCodedMeals.filter(meal => 
+          meal.categories.some(cat => cat.toLowerCase() === lowerCaseCategory)
+        );
     };
+      
 
     const CategoryButton = ({ category, setSelectedCategory }) => (
         <TouchableOpacity onPress={() => setSelectedCategory(category)}>
@@ -102,7 +116,7 @@ const MealScreen = ({ navigation }) => {
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
             
-            <SearchComponent />
+            <SearchComponent setSearchQuery={setSearchQuery} />
 
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 20 }}>
 
@@ -116,13 +130,6 @@ const MealScreen = ({ navigation }) => {
                     />
                 ))}
             </View>
-
-                <TextInput
-                    placeholder="Enter a Meal"
-                    value={meal}
-                    onChangeText={(text) => setMeal(text)}
-                    style={{ borderWidth: 1, borderColor: 'gray', width: 200, padding: 8, marginBottom: 5, backgroundColor: 'white' }}
-                />
                 <TouchableOpacity onPress={handleAddMeal}>
                     <View style={{ backgroundColor: 'teal', padding: 10, borderRadius: 5 }}>
                         <Text style={{ color: 'white' }}>Add Meal</Text>
@@ -158,7 +165,7 @@ const MealScreen = ({ navigation }) => {
                     </View>
                 </Modal>
                 <FlatList
-                    data={filterMealsByCategory(selectedCategory)}
+                    data={filterMealsByCategory(selectedCategory).filter((meal) => meal.name.toLowerCase().includes(searchQuery.toLowerCase()))}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) => {
                         const mealDetails = getMealDetails(item.name); // item should be the name of the meal, not the meal object
