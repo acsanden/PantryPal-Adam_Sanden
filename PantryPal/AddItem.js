@@ -24,8 +24,6 @@ import {
 import Snackbar from 'react-native-snackbar';
 // Import the styles
 import styles from './Styles.js';
-// Load the background image
-import image from './Images/pantryimage.jpg';
 
 // This is the add item screen
 const AddItem = ({navigation}) => {
@@ -131,8 +129,7 @@ const AddItem = ({navigation}) => {
   };
   
   return (
-    <ImageBackground
-      source={image}
+    <View
       style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
     >
       <View style={styles.addContainer}>
@@ -247,7 +244,7 @@ const AddItem = ({navigation}) => {
           />
         </View>
       </View>
-    </ImageBackground>
+    </View>
   )
 }
 

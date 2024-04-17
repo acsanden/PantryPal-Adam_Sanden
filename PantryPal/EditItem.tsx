@@ -50,8 +50,6 @@ const EditItem: React.FC<EditItemProps> = ({navigation, route}) => {
   // States for the date pickers
   const [showDatePickerPurchase, setShowDatePickerPurchase] = useState<boolean>(false);
   const [showDatePickerExpiration, setShowDatePickerExpiration] = useState<boolean>(false);
-  // Load the background image
-  const image = require('./Images/pantryimage.jpg');
 
   // Show the date picker for the expiration or purchase dates
   const showDatepicker = (datePickerType: string): void => {
@@ -143,8 +141,7 @@ const EditItem: React.FC<EditItemProps> = ({navigation, route}) => {
   }, [fetchData]);
 
   return (
-    <ImageBackground
-      source={image}
+    <View
       style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <View style={styles.addContainer}>
         <View style={styles.addTextContainer}>
@@ -272,7 +269,7 @@ const EditItem: React.FC<EditItemProps> = ({navigation, route}) => {
           />
         </View>
       </View>
-    </ImageBackground>
+    </View>
   );
 };
 
