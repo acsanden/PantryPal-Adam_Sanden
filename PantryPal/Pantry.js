@@ -145,7 +145,7 @@ const Pantry = ({navigation}) => {
   
         {/* Buttons at the bottom of the screen */}
 
-        <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start', marginLeft: '-8%' }}>
         {/*
           <Button
             title="Home"
@@ -154,7 +154,7 @@ const Pantry = ({navigation}) => {
           />
 
           <Text>          </Text>
-        */}
+
           <Button
             title="Add Item"
             color="green"
@@ -162,6 +162,7 @@ const Pantry = ({navigation}) => {
               navigation.navigate("Add Item");
             }}
           />
+          */}
           <Text>          </Text>
           <Button
             title="Refresh"
