@@ -21,10 +21,10 @@ const MealScreen = ({ navigation }) => {
                     'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
                 }
             });
-            //const recipes = response.data.results.map(item => new Recipe(item));
-            //console.log(recipes);
-            setSearchResults(response.data.results); // Adjust according to the actual API response structure
             //console.log('Fetched recipes', response.data.results);
+            const recipes = response.data.results.map(item => new Recipe(item));
+            console.log(recipes);
+            setSearchResults(response.data.results); // Adjust according to the actual API response structure
         } catch (error) {
             console.error('Failed to fetch recipes', error);
             setSearchResults([]);
