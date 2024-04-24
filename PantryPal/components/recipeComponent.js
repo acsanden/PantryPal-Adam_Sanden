@@ -3,6 +3,13 @@ class Recipe {
     this.id = json.id || 0;
     this.title = json.title || '';
     this.image = Recipe.processApiImageUrl(json.image);
+    this.vegetarian = json.vegetarian || false;
+    this.vegan = json.vegan || false;
+    this.glutenFree = json.glutenFree || false;
+    this.dairyFree = json.dairyFree || false;
+    this.ketogenic = json.ketogenic || false;
+    this.isFavorite = json.isFavorite || false;
+    this.instructions = json.instructions || '';
   }
 
   static processApiImageUrl(imageUrl) {

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, Button, FlatList, ImageBackground, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Button, FlatList, ImageBackground, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import image from './Images/italy.jpg';
 import axios from 'axios';
-import SearchComponent from './searchComponent';
-import Recipe from './recipeComponent';
+import SearchComponent from './components/searchComponent';
+import Recipe from './components/recipeComponent';
 
 const MealScreen = ({ navigation }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
-    // Uses api to get meal details
+    // Uses api to recipe title, image, and id
     const searchRecipes = async (query) => {
         const apiKey = 'ebd2997c2bmshaf4f87ff8121c4ep1494b1jsnf8a459f3a414';
         const apiUrl = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search';
@@ -21,10 +21,9 @@ const MealScreen = ({ navigation }) => {
                     'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
                 }
             });
-            //console.log('Fetched recipes', response.data.results);
             const recipes = response.data.results.map(item => new Recipe(item));
             console.log(recipes);
-            setSearchResults(response.data.results); // Adjust according to the actual API response structure
+            setSearchResults(response.data.results);
         } catch (error) {
             console.error('Failed to fetch recipes', error);
             setSearchResults([]);
@@ -73,10 +72,11 @@ const MealScreen = ({ navigation }) => {
                     data={searchResults}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item }) => (
-                        <View style={{ height: 50, backgroundColor: 'white', padding: 10, marginVertical: 5, borderRadius: 15 }}>
-                            <Text>{item.title}</Text>
-                            {/* Additional recipe details can be displayed here */}
-                        </View>
+                        <TouchableOpacity onPress={() => navigation.navigate('RecipeDetails', { recipeId: item.id })}>
+                            <View style={{ height: 50, backgroundColor: 'white', padding: 10, marginVertical: 5, borderRadius: 15 }}>
+                                <Text>{item.title}</Text>
+                            </View>
+                        </TouchableOpacity>
                     )}
                 />
             </View>
