@@ -37,6 +37,11 @@ const Pantry = ({navigation}) => {
   const fetchData = async () => {
     setLoading(true); 
     const data = await loadPantryData();
+    if (data === null) {
+      setPantryData(data);
+      setLoading(false);
+      return;
+    }
     const sortedData = sortDataByExpiration(data);
     setPantryData(sortedData);
     setLoading(false);
