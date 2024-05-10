@@ -64,7 +64,6 @@ const MealScreen = ({ navigation }) => {
     const mealCategories = ['vegan', 'high protein', 'gluten free'];
 
     return (
-        <ImageBackground source={image} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 20 }}>
             <SearchComponent setSearchQuery={setSearchQuery} handleSearch={handleSearch} />
 
@@ -80,7 +79,6 @@ const MealScreen = ({ navigation }) => {
                     )}
                 />
             </View>
-        </ImageBackground>
     );
 };
 
